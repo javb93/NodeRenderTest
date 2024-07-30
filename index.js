@@ -15,7 +15,7 @@ conn.connect(function (err) {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("ESTE ES UN EJEMPLO");
 });
 app.get("/users", (req, res) => {
   conn.query("SELECT * FROM users", function (err, result) {
