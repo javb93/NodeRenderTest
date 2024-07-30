@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const conn = mysql.createConnection({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
@@ -9,7 +9,7 @@ const conn = mysql.createConnection({
   database: process.env.DB_NAME || "test",
 });
 
-con.connect(function (err) {
+conn.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 });
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 app.get("/users", (req, res) => {
   conn.query("SELECT * FROM users", function (err, result) {
-    if (err) throw
+    if (err) throw err;
     res.send(result);
   });
 });
